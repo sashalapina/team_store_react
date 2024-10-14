@@ -1,10 +1,6 @@
 const API_BASE_URL = 'https://fakestoreapi.com'
 
 //функция для получаения списка всех товаров
-/**
- * get all products from https://fakestoreapi.com
- * @returns {Promise<Array>}
- */
 export const fetchProducts = async () => {
   try {
     const response = await fetch(`${API_BASE_URL}/products`)
@@ -21,11 +17,6 @@ export const fetchProducts = async () => {
 }
 
 //функция для получения товара по id
-/**
- * get item from https://fakestoreapi.com by ID
- * @param {number|string} id - product ID
- * @returns {Promise<Object>}
- */
 export const fetchProductById = async (id) => {
   try {
     const response = await fetch(`${API_BASE_URL}/products/${id}`)
