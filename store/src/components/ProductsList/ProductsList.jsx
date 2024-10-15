@@ -43,21 +43,25 @@ const ProductsList = () => {
   )
 
   return (
-    <div>
+    <div className='catalog-container'>
       <h1 className="catalog-title">Catalog</h1>
       {products.map((product) => (
         <>
-        <div className="products-container">
-          <div key={product.id}>
-            <img src={product.image} width="150"/><br></br>
-            <span>{product.category}</span>
-            <h3>{product.title}</h3>
-            <span>Rate: {product.rating.rate}</span>
-            <p>{product.price} $</p>
-            <button>More...</button>
-            <button onClick={() => {addToCart(product.id)}}>Add to cart</button>
-          </div>
-        </div>         
+          <div className="product-container" key={product.id}>
+            <div className="product-left-column">
+              <img className='product-item-img' src={product.image}/>
+            </div>
+            <div className="product-right-column">
+              <h3 className='product-item-title'>{product.title}</h3>
+              <span>{product.category}</span><br></br>
+              <span>Rate: {product.rating.rate}</span>
+              <p>{product.price} $</p>
+              <div className="product-buttons-group">
+                <button className='product-more-button'>More...</button>
+                <button className='product-add-to-cart-button' onClick={() => {addToCart(product.id)}}>Add to cart</button>
+              </div>
+            </div>
+          </div>        
         </> 
       ))}
     </div>
