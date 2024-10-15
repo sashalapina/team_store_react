@@ -12,7 +12,7 @@ function Header() {
         <header className="header">
             <div className="header__contsiner">
                 <a className="header__link" href="/">
-                    <img className="header__link-img" src="./logo.png" alt="FakeStoreApi Logo" />
+                    <img className="header__link-img" src="/logo.png" alt="" />
                     Fake Store
                 </a>
                 <button className="header__button" onClick={goToCartButton}>
