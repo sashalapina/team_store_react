@@ -1,21 +1,22 @@
 import { useState, useEffect } from 'react'
 import { fetchProducts } from '../../api/fakeStoreApi'
+import { useNavigate } from 'react-router-dom'
 import './ProductsList.css'
+
 
 
 const ProductsList = () => {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [cart, setCart] = useState([]);
+  const navigate = useNavigate();
 
   const reloadClick = () => {
     window.location.reload();
   }
 
-  const addToCart = (productID) => {
-    setCart((prevCart => [...prevCart, productID]))
-    console.log(cart);
+  const productCardOpen = (product) => {
+    navigate(`product/${product.id}`)
   }
 
   useEffect(() => {
@@ -57,8 +58,8 @@ const ProductsList = () => {
               <span>Rate: {product.rating.rate}</span>
               <p>{product.price} $</p>
               <div className="product-buttons-group">
-                <button className='product-more-button'>More...</button>
-                <button className='product-add-to-cart-button' onClick={() => {addToCart(product.id)}}>Add to cart</button>
+                <button className='product-more-button' onClick={() => productCardOpen(product)}>More...</button>
+                <button className='product-add-to-cart-button'>Add to cart</button>
               </div>
             </div>
           </div>        
