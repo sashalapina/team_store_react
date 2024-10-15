@@ -2,16 +2,37 @@ import { useState, useEffect } from 'react'
 import { fetchProducts } from '../../api/fakeStoreApi'
 
 const ProductsList = () => {
-  const [products, setProducts] = useState([])
+  const [products, setProducts] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  const reloadClick = () => {
+    window.location.reload();
+  }
 
   useEffect(() => {
     const getProducts = async () => {
-        const data = await fetchProducts()
-        setProducts(data)
+      try {
+        const data = await fetchProducts();
+        setProducts(data);
+      } catch (err) {
+        setError(err.message);
+      } finally {
+        setLoading(false);
+      }
+        
     }
-
-    getProducts()
+    getProducts();
   }, [])
+
+  if (loading) return <div>Загрузка...</div>;
+
+  if (error) return (
+    <div>
+      <p>Ошибка загрузки данных, попробуйте обновить страницу...</p>
+      <button onClick={reloadClick}>Обновить</button>
+    </div>
+  )
 
   return (
     <div>
