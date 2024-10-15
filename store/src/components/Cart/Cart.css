@@ -1,0 +1,31 @@
+.cart-title {
+    font-family: 'Dunkin Sans', sans-serif;
+    font-size: 28px;
+    font-weight: 600;
+}
+
+.cart-empty-text {
+    font-family: 'Dunkin Sans', sans-serif;
+}
+
+.cart-catalog-button {
+    font-family: 'Dunkin Sans', sans-serif;
+    padding: 5px 15px;
+    border-radius: 5px;
+    border: 2px solid #000;
+    background-color: #7F2C6E;
+    color: #fff;
+    text-transform: uppercase;
+    cursor: pointer;
+}
+
+.cart-checkout {
+    font-family: 'Dunkin Sans', sans-serif;
+    padding: 5px 15px;
+    border-radius: 5px;
+    border: 2px solid #000;
+    background-color: #7F2C6E;
+    color: #fff;
+    text-transform: uppercase;
+    cursor: pointer;
+}

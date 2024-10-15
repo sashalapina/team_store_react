@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import { fetchProducts } from '../../api/fakeStoreApi'
+import './ProductsList.css'
 
 
 const ProductsList = () => {
@@ -32,17 +33,18 @@ const ProductsList = () => {
     getProducts();
   }, [])
 
-  if (loading) return <div>Загрузка...</div>;
+  if (loading) return <div className="loader"></div>;
 
   if (error) return (
     <div>
-      <p>Ошибка загрузки данных, попробуйте обновить страницу...</p>
-      <button onClick={reloadClick}>Обновить</button>
+      <p className='error-text-message'>Error loading data, please try refreshing the page...</p>
+      <button className='error-reload-button' onClick={reloadClick}>Reload</button>
     </div>
   )
 
   return (
     <div>
+      <h1 className="catalog-title">Catalog</h1>
       {products.map((product) => (
         <>
         <div className="products-container">
@@ -51,7 +53,6 @@ const ProductsList = () => {
             <span>{product.category}</span>
             <h3>{product.title}</h3>
             <span>Rate: {product.rating.rate}</span>
-            <p>{product.description}</p>
             <p>{product.price} $</p>
             <button>More...</button>
             <button onClick={() => {addToCart(product.id)}}>Add to cart</button>
