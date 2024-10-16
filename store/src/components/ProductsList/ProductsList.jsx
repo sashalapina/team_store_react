@@ -59,7 +59,7 @@ const ProductsList = () => {
               <p>{product.price} $</p>
               <div className="product-buttons-group">
                 <button className='product-more-button' onClick={() => productCardOpen(product)}>More...</button>
-                <button className='product-add-to-cart-button'>Add to cart</button>
+                <button className='product-add-to-cart-button' onClick={() => addToCart(product)}>Add to cart</button>
               </div>
             </div>
           </div>        
