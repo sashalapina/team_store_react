@@ -11,6 +11,13 @@ const ProductsList = () => {
   const [error, setError] = useState(null);
   const navigate = useNavigate();
 
+// добавление в корзину
+  const [cartItems, setCartItems] = useState([]); // Добавляем state для хранения товаров в корзине
+
+  const addToCart = (cart) => {
+    navigate(`cart/${id}`)
+  }
+
   const reloadClick = () => {
     window.location.reload();
   }
@@ -19,10 +26,6 @@ const ProductsList = () => {
     navigate(`product/${product.id}`)
   }
 
-// добавление в корзину
-  const addToCart = (cart) => {
-    navigate(`cart/${id}`)
-  }
 
   useEffect(() => {
     const getProducts = async () => {
@@ -64,7 +67,7 @@ const ProductsList = () => {
               <p>{product.price} $</p>
               <div className="product-buttons-group">
                 <button className='product-more-button' onClick={() => productCardOpen(product)}>More...</button>
-                <button className='product-add-to-cart-button' onClick={() => addToCart(cart)}>Add to cart</button>
+                <button className='product-add-to-cart-button' onClick={() => addToCart(product)}>Add to cart</button>
               </div>
             </div>
           </div>        
