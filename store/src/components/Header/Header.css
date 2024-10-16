@@ -1,5 +1,5 @@
-.header__contsiner {
-    width: calc(100vw - 400px);
+.header__container {
+    width: calc(100vw - 200px);
     margin: 0 auto;
     display: flex;
     justify-content: space-between;
@@ -28,6 +28,30 @@
 
 .header__link-img {
     width: 40px;
+}
+
+.header__buttons_group {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    height: 100%;
+}
+
+.header__button-user-profile {
+    background-color: transparent;
+    padding: 5px;
+    border: none;
+    cursor: pointer;
+    stroke: #000;
+}
+
+.header__button-user-profile:hover {
+    background-color: transparent;
+    padding: 5px;
+    border: none;
+    cursor: pointer;
+    stroke: #7F2C6E;
 }
 
 .header__button {
