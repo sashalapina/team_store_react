@@ -30,3 +30,19 @@ export const fetchProductById = async (id) => {
     throw error
   }
 }
+
+//функция для получаения категорий
+export const fetchCategories = async () => {
+  try {
+    const response = await fetch(`${API_BASE_URL}/products/categories`)
+    if (!response.ok) {
+      throw new Error('Произошла ошибка при загрузке списка категорий')
+    }
+
+    const data = await response.json()
+    return data
+  } catch (error) {
+    console.error('fetchCategories:', error)
+    throw error
+  }
+}

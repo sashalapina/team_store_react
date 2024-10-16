@@ -49,3 +49,12 @@
 .header__button-img {
     width: 30px;
 }
+
+.categories-list {
+    list-style: none;
+    font-size: 14px;
+}
+
+.categories-list-item-link:hover {
+    color: #7F2C6E
+}
