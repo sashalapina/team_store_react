@@ -8,9 +8,14 @@ function Header() {
     const [categories, setCategories] = useState([]);
     const [error, setError] = useState(null);
 
-    const goToCartButton = () => {
-        navigate('/cart');
-    }
+  const goToCartButton = () => {
+    navigate('/cart');
+  };
+
+  const categoryCatalogOpen = (category) => {
+    const link_category = category.replace(/ /g, '_');
+    navigate(`/products/${link_category}`);
+  }
 
     useEffect(() => {
         const getCategories = async () => {
@@ -35,7 +40,7 @@ function Header() {
                     <>
                         <ul className="categories-list">
                             <li className="categories-list-item" key={category.key}>
-                                <a className="categories-list-item-link" href="#">{category}</a></li>
+                                <a className="categories-list-item-link" href="" onClick={() => categoryCatalogOpen(category)}>{category}</a></li>
                         </ul>
                     </>
                 ))}
@@ -54,5 +59,3 @@ function Header() {
 }
 
 export default Header;
-
-
