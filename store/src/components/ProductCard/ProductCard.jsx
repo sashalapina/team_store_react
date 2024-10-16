@@ -23,8 +23,6 @@ const ProductCard = () => {
     getProduct();
   },[id])
 
-  console.log(product);
-
   if (loading) {
     return <div className='loader'></div>;
   }

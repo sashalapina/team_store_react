@@ -1,12 +1,28 @@
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { fetchCategories } from '../../api/fakeStoreApi';
 import './Header.css'
 
 function Header() {
     const navigate = useNavigate();
+    const [categories, setCategories] = useState([]);
+    const [error, setError] = useState(null);
 
     const goToCartButton = () => {
         navigate('/cart');
     }
+
+    useEffect(() => {
+        const getCategories = async () => {
+            try {
+                const data = await fetchCategories();
+                setCategories(data);
+            } catch (err) {
+                setError(err.message);
+            }
+        }
+        getCategories();
+    },[])
 
     return (
         <header className="header">
@@ -15,6 +31,14 @@ function Header() {
                     <img className="header__link-img" src="/logo.png" alt="" />
                     Fake Store
                 </a>
+                {categories.map((category) => (
+                    <>
+                        <ul className="categories-list">
+                            <li className="categories-list-item" key={category.key}>
+                                <a className="categories-list-item-link" href="#">{category}</a></li>
+                        </ul>
+                    </>
+                ))}
                 <button className="header__button" onClick={goToCartButton}>
                     <svg width="30px" height="30px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M3.86376 16.4552C3.00581 13.0234 2.57684 11.3075 3.47767 10.1538C4.3785 9 6.14721 9 9.68462 9H14.3153C17.8527 9 19.6214 9 20.5222 10.1538C21.4231 11.3075 20.9941 13.0234 20.1362 16.4552C19.5905 18.6379 19.3176 19.7292 18.5039 20.3646C17.6901 21 16.5652 21 14.3153 21H9.68462C7.43476 21 6.30983 21 5.49605 20.3646C4.68227 19.7292 4.40943 18.6379 3.86376 16.4552Z" stroke-width="1.5"/>
