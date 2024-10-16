@@ -19,6 +19,11 @@ const ProductsList = () => {
     navigate(`product/${product.id}`)
   }
 
+// добавление в корзину
+  const addToCart = (cart) => {
+    navigate(`cart/${id}`)
+  }
+
   useEffect(() => {
     const getProducts = async () => {
       try {
@@ -59,7 +64,7 @@ const ProductsList = () => {
               <p>{product.price} $</p>
               <div className="product-buttons-group">
                 <button className='product-more-button' onClick={() => productCardOpen(product)}>More...</button>
-                <button className='product-add-to-cart-button' onClick={() => addToCart(product)}>Add to cart</button>
+                <button className='product-add-to-cart-button' onClick={() => addToCart(cart)}>Add to cart</button>
               </div>
             </div>
           </div>        
