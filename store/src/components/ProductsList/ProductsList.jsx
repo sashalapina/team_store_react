@@ -12,7 +12,7 @@ const ProductsList = () => {
   const navigate = useNavigate();
 
 // добавление в корзину
-  const [cartItems, setCartItems] = useState([]); // Добавляем state для хранения товаров в корзине
+  const [cartItems, setCartItems] = useState([]); 
 
   const addToCart = (cart) => {
     navigate(`cart/${id}`)
