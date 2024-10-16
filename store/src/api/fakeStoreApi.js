@@ -32,9 +32,9 @@ export const fetchProductById = async (id) => {
 }
 
 // Функция для добавления товара в корзину
-export const addToCart = async (productId) => {
+export const addToCart = async (id) => {
   try {
-    const response = await fetch(`${API_BASE_URL}/carts/${productId}`, { method: 'POST' });
+    const response = await fetch(`${API_BASE_URL}/carts/${id}`, { method: 'POST' });
     if (!response.ok) {
       throw new Error('Произошла ошибка при добавлении товара в корзину');
     }
