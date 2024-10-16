@@ -1,0 +1,51 @@
+.recommendations {
+    margin-top: 40px;
+}
+
+.recommendations h3 {
+    margin-bottom: 20px;
+}
+
+.recommendations-list {
+    display: flex;
+    gap: 20px;
+}
+
+.recommendation-item {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 150px;
+    text-decoration: none;
+    color: black;
+    transition: transform 0.2s ease-in-out;
+}
+
+.recommendation-item:hover {
+    transform: scale(1.05);
+}
+
+.recommendation-item img {
+    width: 100px;
+    height: 100px;
+    object-fit: contain;
+    border: 1px solid #ddd;
+    padding: 5px;
+}
+
+.recommendation-details {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-top: 10px;
+}
+
+.recommendation-title {
+    font-size: 14px;
+    margin-bottom: 5px;
+}
+
+.recommendation-price {
+    font-size: 16px;
+    font-weight: bold;
+}
