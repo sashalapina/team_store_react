@@ -13,7 +13,7 @@ function Header() {
   };
 
   const categoryCatalogOpen = (category) => {
-    const link_category = category.replace(/ /g, '_').replace(/'/g, '');
+    const link_category = category.replace(/ /g, '_');
     navigate(`/products/${link_category}`);
   }
 

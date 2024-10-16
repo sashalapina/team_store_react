@@ -46,3 +46,20 @@ export const fetchCategories = async () => {
     throw error
   }
 }
+
+//функция для получаения товаров определенной категории
+export const fetchProductsCategories = async (category) => {
+  try {
+    const response = await fetch(`${API_BASE_URL}/products/category/${category}`)
+    if (!response.ok) {
+      throw new Error(`Произошла ошибка при загрузке списка товаров категории ${category}`)
+    }
+
+    const data = await response.json()
+    console.table(data)
+    return data
+  } catch (error) {
+    console.error('fetchProductsCategories:', error)
+    throw error
+  }
+}
