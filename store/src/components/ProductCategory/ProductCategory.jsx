@@ -14,6 +14,9 @@ const ProductCategory = () => {
     navigate(`/product/${product.id}`)
   }
 
+  const categoryTitle = category.replace(/_/g, ' ');
+  const newCategoryTitle = categoryTitle.charAt(0).toUpperCase() + categoryTitle.slice(1);
+
   useEffect(() => {
     const getProducts = async () => {
         try {
@@ -34,7 +37,7 @@ const ProductCategory = () => {
 
   return (
     <>
-    <h1 className='catalog-title'>{category.replace(/_/g, " ")}</h1>
+    <h1 className='catalog-title'>{newCategoryTitle}</h1>
     {products.map((product) => (
         <>
           <div className="product-container" key={product.id}>
