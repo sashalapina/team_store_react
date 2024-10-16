@@ -1,5 +1,6 @@
 import Header from '../components/Header/Header';
 import ProductsList from '../components/ProductsList/ProductsList';
+import Recommendations from '../components/Recommendations/Recommendations';
 
 const ProductsListPage = () => {
   return (
@@ -7,6 +8,7 @@ const ProductsListPage = () => {
       <Header />
       <main>
         <ProductsList />
+        <Recommendations />
       </main>
     </>
   );
