@@ -45,3 +45,4 @@ export const addToCart = async (id) => {
     throw error;
   }
 };
+
