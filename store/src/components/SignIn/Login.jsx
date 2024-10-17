@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import './Login.css'
 
 function Login({ isOpen, closeModal }) {
-    const [email, setEmail] = useState('');
+    const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState(null);
     const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -15,10 +15,10 @@ function Login({ isOpen, closeModal }) {
     },[]);
 
     const handleSubmit = async (e) => {
-        e.preventDefault();  // Останавливаем стандартную отправку формы
+        e.preventDefault();
 
         const loginData = {
-            username: email, // В этом API используется поле "username"
+            username: username,
             password: password
         };
 
@@ -57,12 +57,13 @@ function Login({ isOpen, closeModal }) {
 
     return (
         <>
-        <div className="modal-overlay" onClick={closeModal}></div> {/* Overlay для затемнения */}
+        <div className="modal-overlay" onClick={closeModal}></div>
         <div className="modal">
             <div className="modal-content">
                 {isLoggedIn ? (
                     <div className="user-profile">
                         <h1 className="user-profile-title">User Profile</h1>
+                        <button className="user-profile-close-modal-btn" onClick={closeModal}></button>
                         <p className="user-profile-text">Your sign in was successful</p>
                         <div className="user-profile-group-btn">
                             <button className="logout-btn" onClick={handleLogOut}>Log out</button>
@@ -77,10 +78,10 @@ function Login({ isOpen, closeModal }) {
                             Username:
                             <input
                                 type="text"
-                                id="email"
+                                id="username"
                                 className="input"
-                                value={email}
-                                onChange={(e) => setEmail(e.target.value)}
+                                value={username}
+                                onChange={(e) => setUsername(e.target.value)}
                                 required
                             />
                         </label>

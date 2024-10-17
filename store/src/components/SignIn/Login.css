@@ -1,4 +1,3 @@
-/* Overlay для затемнения фона */
 .modal-overlay {
     position: fixed;
     top: 0;
@@ -9,7 +8,6 @@
     z-index: 1000;
 }
 
-/* Стили для модалки */
 .modal {
     position: fixed;
     top: 50%;
@@ -36,14 +34,14 @@
 
 .user-profile-text {
     font-family: 'Montserrat', sans-serif;
+    margin: 0 0 15px;
 }
 
 .user-profile-title {
     margin: 0 0 15px;
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'Dunkin Sans', sans-serif;
 }
 
-/* Кнопка */
 .login-submit-btn {
     font-family: 'Dunkin Sans', sans-serif;
     padding: 5px 15px;
@@ -68,7 +66,7 @@ input:focus-visible {
 }
 
 .logout-btn {
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'Dunkin Sans', sans-serif;
     font-weight: 600;
     padding: 5px 15px;
     border-radius: 5px;
@@ -79,7 +77,6 @@ input:focus-visible {
     cursor: pointer;
 }
 
-/* Поля ввода */
 .input {
     width: 100%;
     padding: 10px;
@@ -89,8 +86,27 @@ input:focus-visible {
     border: 1px solid #ccc;
 }
 
-/* Сообщение об ошибке */
 .error-message {
+    font-family: 'Montserrat', sans-serif;
     color: red;
-    margin-bottom: 15px;
+    margin: 0 0 15px;
+}
+
+.user-profile {
+    position: relative;
+}
+
+.user-profile-close-modal-btn {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    width: 30px;
+    height: 30px;
+    background-color: transparent;
+    border: none;
+    background-image: url('../../../public/close.svg');
+    background-position: center;
+    background-size: 100%;
+    background-repeat: no-repeat;
+    cursor: pointer;
 }
