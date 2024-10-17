@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 import { fetchProductsCategories } from '../../api/fakeStoreApi';
 import { useParams, useNavigate } from 'react-router-dom';
 import './ProductCategory.css'
+import SliderTest  from '../Slider/Slider';
 
 const ProductCategory = () => {
   const [products, setProducts] = useState([]);
@@ -45,7 +46,7 @@ const ProductCategory = () => {
         <LazyLoad key={product.id} height={280} offsetVertical={280}>
           <div className='product-category__item' key={product.id}>
             <div className='product-category__item-left'>
-              <img className='product-category__item-image' src={product.image} alt={product.title} />
+              <SliderTest images={[product.image]} />
             </div>
             <div className='product-category__item-right'>
               <h3 className='product-category__item-title'>{product.title}</h3>
