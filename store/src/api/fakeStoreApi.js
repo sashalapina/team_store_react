@@ -56,7 +56,6 @@ export const fetchProductsCategories = async (category) => {
     }
 
     const data = await response.json()
-    console.table(data)
     return data
   } catch (error) {
     console.error('fetchProductsCategories:', error)
