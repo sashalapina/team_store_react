@@ -7,25 +7,22 @@ export const CartProvider = ({ children }) => {
 
   // Функция для добавления товара в корзину
   const addToCart = (product) => {
-    console.log('Добавление товара в корзину:', product); // Лог для проверки
     setCartItems((prevItems) => {
       const itemExists = prevItems.find((item) => item.id === product.id);
 
       if (itemExists) {
-        console.log('Товар уже в корзине, обновляем количество');
+        // Если товар уже в корзине, увеличиваем его количество
         return prevItems.map((item) => (item.id === product.id ? { ...item, quantity: item.quantity + 1 } : item));
       } else {
-        console.log('Новый товар, добавляем в корзину');
+        // Если товара нет в корзине, добавляем его
         return [...prevItems, { ...product, quantity: 1 }];
       }
     });
-    console.log('Содержимое корзины:', cartItems); // Лог для проверки содержимого корзины
   };
 
   // Функция для очистки корзины
   const clearCart = () => {
     setCartItems([]);
-    console.log('Корзина очищена');
   };
 
   return <CartContext.Provider value={{ cartItems, addToCart, clearCart }}>{children}</CartContext.Provider>;

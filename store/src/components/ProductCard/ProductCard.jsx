@@ -1,7 +1,7 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import { fetchProductById } from '../../api/fakeStoreApi'
-import './ProductCard.css'
+import { fetchProductById } from '../../api/fakeStoreApi';
+import './ProductCard.css';
 
 const ProductCard = () => {
   const { id } = useParams();
@@ -18,13 +18,13 @@ const ProductCard = () => {
         setError(err.message);
       } finally {
         setLoading(false);
-      }  
-    }
+      }
+    };
     getProduct();
-  },[id])
+  }, [id]);
 
   if (loading) {
-    return <div className='loader'></div>;
+    return <div className="loader"></div>;
   }
 
   if (!product) {
@@ -39,10 +39,10 @@ const ProductCard = () => {
       <p>{product.description}</p>
       <p>Price: ${product.price}</p>
       <p>Rate: {product.rating.rate} / 5</p>
-      <button className='product-item-add-to-cart-button'>Add to cart</button>
+      {/* <button className='product-item-add-to-cart-button'>Add to cart</button> */}
+      <button onClick={() => addToCart({ id, title, price, image })}>Добавить в корзину</button>
     </div>
-  )
-
+  );
 };
 
 export default ProductCard;
