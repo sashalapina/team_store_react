@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import { getCart, clearCart } from '../api/cartApi';
-import styled from 'styled-components';
+import { fetchProductById } from '../api/fakeStoreApi';
 import Header from '../components/Header/Header';
+import styled from 'styled-components';
 
 const CartPage = () => {
   const [cartItems, setCartItems] = useState([]);
@@ -12,14 +12,33 @@ const CartPage = () => {
   useEffect(() => {
     const fetchCart = async () => {
       try {
-        const data = await getCart(userId);
-        if (data && Array.isArray(data.products)) {
-          setCartItems(data.products);
-        } else {
-          setCartItems([]);
+        // Получаем корзину по ID пользователя
+        const cartData = await getCartz(userId);
+        if (!cartData.products || cartData.products.length === 0) {
+          setError('Корзина пуста или данные недоступны');
+          return;
         }
+
+        const products = await Promise.all(
+          cartData.products.map(async (item) => {
+            try {
+              const productData = await fetchProductById(item.productId);
+              return {
+                ...productData,
+                quantity: item.quantity,
+              };
+            } catch (err) {
+              console.error('Ошибка получения товара:', err);
+              setError('Ошибка при загрузке товара');
+              return null;
+            }
+          })
+        );
+
+        setCartItems(products.filter(Boolean));
       } catch (err) {
-        setError('Ошибка при загрузке корзины');
+        console.error('Ошибка загрузки корзины:', err);
+        setError('Ошибка загрузки корзины');
       } finally {
         setLoading(false);
       }
@@ -32,56 +51,60 @@ const CartPage = () => {
   const handleClearCart = async () => {
     try {
       await clearCart(userId);
-      setCartItems([]);
+      setCartItems([]); // Очищаем состояние корзины
     } catch (error) {
       alert('Ошибка при очистке корзины');
     }
   };
 
+  // Показ состояния загрузки
   if (loading) {
     return <p>Загрузка...</p>;
   }
 
+  // Показ ошибки, если что-то пошло не так
   if (error) {
     return <p>{error}</p>;
   }
 
   return (
-    <>
+    <CartContainer>
       <Header />
-      <CartContainer>
-        <h1>Корзина</h1>
-        {cartItems.length === 0 ? (
-          <EmptyCart>Ваша корзина пуста</EmptyCart>
-        ) : (
-          <>
-            <CartList>
-              {cartItems.map((item) => (
-                <CartItem key={item.productId}>
-                  <CartImage src={item.image} alt={item.title} />
-                  <CartDetails>
-                    <CartTitle>{item.title}</CartTitle>
-                    <CartPrice>Цена: ${item.price}</CartPrice>
-                    <CartQuantity>Количество: {item.quantity}</CartQuantity>
-                  </CartDetails>
-                </CartItem>
-              ))}
-            </CartList>
-            <ClearButton onClick={handleClearCart}>Очистить корзину</ClearButton>
-          </>
-        )}
-      </CartContainer>
-    </>
+      <h1>Корзина</h1>
+      {cartItems.length === 0 ? (
+        <EmptyCart>Ваша корзина пуста</EmptyCart>
+      ) : (
+        <>
+          <CartList>
+            {cartItems.map((item) => (
+              <CartItem key={item.id}>
+                <CartImage src={item.image} alt={item.title} />
+                <CartDetails>
+                  <CartTitle>{item.title}</CartTitle>
+                  <CartPrice>Цена: ${item.price}</CartPrice>
+                  <CartQuantity>Количество: {item.quantity}</CartQuantity>
+                </CartDetails>
+              </CartItem>
+            ))}
+          </CartList>
+          <ClearButton onClick={handleClearCart}>Очистить корзину</ClearButton>
+        </>
+      )}
+    </CartContainer>
   );
 };
 
 export default CartPage;
 
-// Стили для страницы корзины
 const CartContainer = styled.div`
   padding: 20px;
-  max-width: 1200px;
+  max-width: 800px;
   margin: 0 auto;
+`;
+
+const EmptyCart = styled.p`
+  text-align: center;
+  font-size: 18px;
 `;
 
 const CartList = styled.div`
@@ -93,61 +116,43 @@ const CartList = styled.div`
 const CartItem = styled.div`
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  background-color: #f9f9f9;
-  padding: 15px;
-  border-radius: 8px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 `;
 
 const CartImage = styled.img`
-  width: 120px;
-  height: 120px;
-  object-fit: cover;
-  border-radius: 8px;
+  width: 100px;
+  height: 100px;
+  object-fit: contain;
 `;
 
 const CartDetails = styled.div`
-  flex-grow: 1;
   margin-left: 20px;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
 `;
 
 const CartTitle = styled.h2`
   font-size: 18px;
   margin: 0;
-  margin-bottom: 10px;
 `;
 
 const CartPrice = styled.p`
   font-size: 16px;
-  color: #333;
 `;
 
 const CartQuantity = styled.p`
-  font-size: 16px;
-  color: #666;
+  font-size: 14px;
+  color: grey;
 `;
 
 const ClearButton = styled.button`
-  background-color: #e74c3c;
-  color: #fff;
-  border: none;
-  padding: 10px 20px;
-  font-size: 16px;
-  border-radius: 8px;
-  cursor: pointer;
   margin-top: 20px;
+  padding: 10px 20px;
+  background-color: red;
+  color: white;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+  font-size: 16px;
 
   &:hover {
-    background-color: #c0392b;
+    background-color: darkred;
   }
-`;
-
-const EmptyCart = styled.p`
-  font-size: 18px;
-  color: #888;
-  text-align: center;
 `;
