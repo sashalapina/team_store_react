@@ -1,6 +1,7 @@
-import { useState, useEffect } from 'react'
-import { fetchProductsCategories } from '../../api/fakeStoreApi'
-import { useParams, useNavigate } from 'react-router-dom'
+import LazyLoad from 'react-lazy-load';
+import { useState, useEffect } from 'react';
+import { fetchProductsCategories } from '../../api/fakeStoreApi';
+import { useParams, useNavigate } from 'react-router-dom';
 
 const ProductCategory = () => {
   const [products, setProducts] = useState([]);
@@ -39,7 +40,7 @@ const ProductCategory = () => {
     <>
     <h1 className='catalog-title'>{newCategoryTitle}</h1>
     {products.map((product) => (
-        <>
+        <LazyLoad key={product.id} height="100vh">
           <div className="product-container" key={product.id}>
             <div className="product-left-column">
               <img className='product-item-img' src={product.image}/>
@@ -54,8 +55,8 @@ const ProductCategory = () => {
                 <button className='product-add-to-cart-button'>Add to cart</button>
               </div>
             </div>
-          </div>        
-        </> 
+          </div>
+          </LazyLoad>
       ))}
     </>
   )
