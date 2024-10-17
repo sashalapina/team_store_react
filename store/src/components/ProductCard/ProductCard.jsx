@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { fetchProductById } from '../../api/fakeStoreApi';
 import './ProductCard.css';
+import { addToCart } from '../../api/CartApi';
 
 const ProductCard = () => {
   const { id } = useParams();

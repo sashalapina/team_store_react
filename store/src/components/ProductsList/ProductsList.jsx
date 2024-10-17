@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { fetchProducts } from '../../api/fakeStoreApi';
 import { useNavigate } from 'react-router-dom';
 import './ProductsList.css';
+import { addToCart } from '../../api/CartApi';
 
 const ProductsList = () => {
   const [products, setProducts] = useState([]);
