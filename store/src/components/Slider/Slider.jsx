@@ -23,7 +23,7 @@ const SliderTest = ({images}) => {
     <Slider {...settings}>
       {allImages.map((image, index) => (
           <div key={index}>
-            <img src={image} alt="image" />
+            <img className="image-slider" src={image} alt="image" />
           </div>
       ))}
     </Slider>

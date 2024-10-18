@@ -3,11 +3,11 @@
     margin: 0;
 }
 
-.slick-slide img {
+.image-slider {
     display: flex;
     justify-content: center;
-    align-items: center;
-    height: 180px;
+    max-height: 180px;
+    margin: 0 auto;
 }
 
 .slick-dots li button:before {

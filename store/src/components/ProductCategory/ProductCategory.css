@@ -6,17 +6,17 @@
 
 .product-category__item {
     display: flex;
+    gap: 40px;
     height: 240px;
     width: 100%;
     align-items: center;
-    padding: 20px;
+    padding: 20px 40px;
     margin-bottom: 40px;
     border-radius: 15px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
 
 .product-category__item-left {
-    flex: 1;
     display: flex;
     justify-content: center;
     align-items: center;
