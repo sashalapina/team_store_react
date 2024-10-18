@@ -4,7 +4,6 @@
 }
 
 .image-slider {
-    display: flex;
     justify-content: center;
     max-height: 180px;
     margin: 0 auto;
