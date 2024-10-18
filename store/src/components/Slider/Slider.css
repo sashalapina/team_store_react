@@ -1,0 +1,18 @@
+.slick-slider {
+    width: 200px;
+    margin: 0;
+}
+
+.image-slider {
+    justify-content: center;
+    max-height: 180px;
+    margin: 0 auto;
+}
+
+.slick-dots li button:before {
+    color: #000;
+}
+
+.slick-dots li.slick-active button:before {
+    color: #7F2C6E;
+}

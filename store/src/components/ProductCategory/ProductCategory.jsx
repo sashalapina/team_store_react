@@ -1,6 +1,9 @@
-import { useState, useEffect } from 'react'
-import { fetchProductsCategories } from '../../api/fakeStoreApi'
-import { useParams, useNavigate } from 'react-router-dom'
+import LazyLoad from 'react-lazy-load';
+import { useState, useEffect } from 'react';
+import { fetchProductsCategories } from '../../api/fakeStoreApi';
+import { useParams, useNavigate } from 'react-router-dom';
+import './ProductCategory.css'
+import SliderTest  from '../Slider/Slider';
 
 const ProductCategory = () => {
   const [products, setProducts] = useState([]);
@@ -37,26 +40,31 @@ const ProductCategory = () => {
 
   return (
     <>
-    <h1 className='catalog-title'>{newCategoryTitle}</h1>
-    {products.map((product) => (
-        <>
-          <div className="product-container" key={product.id}>
-            <div className="product-left-column">
-              <img className='product-item-img' src={product.image}/>
+    <>
+      <h1 className='product-category__title'>{newCategoryTitle}</h1>
+      {products.map((product) => (
+        <LazyLoad key={product.id} height={280} offsetVertical={280}>
+          <div className='product-category__item' key={product.id}>
+            <div className='product-category__item-left'>
+              <SliderTest images={[product.image]} />
             </div>
-            <div className="product-right-column">
-              <h3 className='product-item-title'>{product.title}</h3>
-              <span>{product.category}</span><br></br>
-              <span>Rate: {product.rating.rate}</span>
-              <p>{product.price} $</p>
-              <div className="product-buttons-group">
-                <button className='product-more-button' onClick={() => productCardOpen(product)}>More...</button>
-                <button className='product-add-to-cart-button'>Add to cart</button>
+            <div className='product-category__item-right'>
+              <h3 className='product-category__item-title'>{product.title}</h3>
+              <span className='product-category__item-rate'>Rate: {product.rating.rate} / 5</span>
+              <p className='product-category__item-price'>{product.price} $</p>
+              <div className='product-category__item-buttons'>
+                <button className='product-category__button product-category__button--more' onClick={() => productCardOpen(product)}>
+                  More...
+                </button>
+                <button className='product-category__button product-category__button--add-to-cart'>
+                  Add to cart
+                </button>
               </div>
             </div>
-          </div>        
-        </> 
+          </div>
+        </LazyLoad>
       ))}
+    </>
     </>
   )
 }
